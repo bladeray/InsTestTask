@@ -1,0 +1,16 @@
+.env
+/venv
+/env
+/build
+.pytest_cache
+/allure_result
+/allure-report
+/allure-results
+/allure_results
+/logs
+/output
+.idea/
+.DS_Store
+**/__pycache__/
+screenshot
+geckodriver.log
