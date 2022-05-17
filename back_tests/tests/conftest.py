@@ -1,3 +1,4 @@
+import allure
 import pytest
 
 from back_tests.checker import PetstoreChecker
@@ -19,10 +20,13 @@ def valid_params(request):
 
 @pytest.fixture
 def created_pet():
-    PetstoreClient().create_pet(PET_FULL)
+    with allure.step('Create a pet'):
+        PetstoreClient().create_pet(PET_FULL)
     yield PET_FULL
-    PetstoreClient().delete_pet_by_id(PET_FULL.id)
-    assert PetstoreClient().find_pet_by_id(PET_FULL.id).status_code == 404
+    with allure.step('Delete a pet after test'):
+        PetstoreClient().delete_pet_by_id(PET_FULL.id)
+    with allure.step('Check that pet is deleted'):
+        assert PetstoreClient().find_pet_by_id(PET_FULL.id).status_code == 404
 
 
 @pytest.fixture

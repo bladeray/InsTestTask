@@ -7,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def pytest_addoption(parser):
-    parser.addoption('--browser', action='store', default='chrome', help='Available: chrome, firefox')
+    parser.addoption('--browser', action='store', default='firefox', help='Available: chrome, firefox')
 
 
 @pytest.fixture(scope='function')

@@ -11,3 +11,9 @@ class PetstoreChecker:
         assert pet_by_id.get('photoUrls') == expected_data.photoUrls
         assert pet_by_id.get('tags') == expected_data.tags
         assert pet_by_id.get('status') == expected_data.status
+
+    def check_update_response(self, response, expected_code: int, message: str):
+        assert response.status_code == expected_code, response.status_code
+        assert response.json().get('code') == expected_code
+        assert response.json().get('type') == 'unknown'
+        assert message in response.json().get('message')
