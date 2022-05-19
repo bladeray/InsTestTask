@@ -5,6 +5,11 @@ class N11User(HttpUser):
     wait_time = between(1, 5)
 
     @task
+    def get_base_page(self):
+        base_page = self.client.get("/")
+        assert 'n11.com - Hayat Sana Gelir' in base_page.text
+
+    @task
     def get_search_request(self):
         self.client.get("/arama?q=phone")
         self.client.get("/arama?q=new+balance")

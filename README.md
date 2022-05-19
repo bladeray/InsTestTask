@@ -11,6 +11,9 @@ brew install geckodriver
 brew install allure
 ```
 ```
+brew install locust
+```
+```
 pip install -r requirements.txt
 ```
 
@@ -26,7 +29,7 @@ pytest front_tests --browser={chrome/firefox} --alluredir=allure_result --screen
 
 Run options: 
 
-```--browser``` (default: chrome) option for choosing a browser. Can be Chrome or Firefox. (Chrome is default)
+```--browser``` (default: firefox) option for choosing a browser. Can be Chrome or Firefox. (Chrome is default)
 
 ```--alluredir``` option for setting the folder for allure reports.
 
@@ -41,9 +44,11 @@ To run the tests:
 locust -f load_tests/locustfile.py --headless --users 10 --spawn-rate 1 -H https://www.n11.com
 ```
 
-```get_products_for_each_category``` GET-requests to products from each category
+```get_base_page``` GET-request to base page with checking title in response
 
-```get_categories``` GET-requests to for each category
+```get_search_request``` GET-requests to search result pages
+
+```get_products_from_results``` GET-requests to product pages from search result
 
 ## Test Automation - API
 To run the tests:

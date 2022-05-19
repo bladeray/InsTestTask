@@ -1,11 +1,10 @@
-import time
-
 import allure
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 from front_tests.base_page import BasePage
+from front_tests.tests.conftest import TEAM_TEXT
 
 
 @allure.story('E2E ui test')
@@ -29,7 +28,7 @@ def test_ui(browser):
         assert browser.find_element(By.CLASS_NAME, "location-slider-pagination").is_displayed()
 
         assert browser.find_element(By.XPATH, "//section//h2[text()='Life at Insider']").is_displayed()
-        assert browser.find_element(By.XPATH, "//p[text()='We’re here to grow and drive growth—as none of us did before. Together, we’re building a culture that inspires us to create our life’s work—and creates a bold(er) impact. We know that we’re smarter as a group than we are alone. Become one of us if you dare to play bigger.']").is_displayed()
+        assert browser.find_element(By.XPATH, f"//p[text()='{TEAM_TEXT}']").is_displayed()
         assert browser.find_element(By.CLASS_NAME, "elementor-skin-carousel").is_displayed()
 
         assert browser.find_element(By.XPATH, "//section//h3[text()[contains(.,'Find your calling')]]").is_displayed()
@@ -38,21 +37,13 @@ def test_ui(browser):
         assert browser.find_element(By.XPATH, "//a[text()='See all teams']").is_enabled()
 
     with allure.step('Click “See All Teams”, select Quality Assurance, click “See all QA jobs”'):
-        page.click((By.XPATH, "//a[text()='See all teams']"))
+        page.click((By.CLASS_NAME, "loadmore"))
         page.click((By.XPATH, "//a[@href='https://useinsider.com/careers/quality-assurance/']"))
         page.click((By.XPATH, "//a[@href='https://useinsider.com/careers/open-positions/?department=qualityassurance']"))
 
-    with allure.step('Filter jobs by Location - Istanbul, Turkey and department - Quality Assurance, '
-                     'check presence of jobs list'):
-        time.sleep(2)
-        page.click((By.ID, "select2-filter-by-location-container"))
-        page.click((By.XPATH, "//li[contains(@id, 'Istanbul, Turkey')]"))
-        time.sleep(2)
-        total_number = browser.find_element(By.CLASS_NAME, "totalResult").text
-        position_cards = browser.find_elements(By.CLASS_NAME, "position-list-item")
-        for position_card in position_cards:
-            position_card.is_displayed()
-        assert total_number == str(len(position_cards))
+    with allure.step('Filter jobs by Location - Istanbul, Turkey and check presence of jobs list'):
+        page.select_location('Istanbul, Turkey')
+        page.check_presence_of_jobs('Istanbul, Turkey')
 
     with allure.step('Check that jobs’ Position contains “Quality Assurance”, Department contains “Quality Assurance”, '
                      'Location contains “Istanbul, Turkey” and “Apply Now” button'):
