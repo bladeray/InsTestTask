@@ -5,25 +5,28 @@ class N11User(HttpUser):
     wait_time = between(1, 5)
 
     @task
-    def get_products_for_each_category(self):
-        self.client.get("/kadin-ceket/mavi-jill-90-s-gri-jean-ceket-110081-32651-P446745171")
-        self.client.get("/urun/wechip-h96-mini-h8-2g16g-16-gb-android-tv-box-1761089?magaza=meldeticaret")
-        self.client.get("/koltuk-takimi/hazal-oturma-gurubu-3311-mavi-lacivert-P524851582")
-        self.client.get("/urun/dr-browns-options-pp-biberon-dar-agiz-120-ml-2888972?magaza=pharmastore")
-        self.client.get("/urun/braun-exactfit-1-bua-5000-ust-koldan-olcer-tansiyon-aleti-siyah-1752958?magaza=hometicaret")
-        self.client.get("/urun/casio-edifice-ef-539d-1avdf-erkek-kol-saati-967759?magaza=gundogdusaat")
-        self.client.get("/urun/hypervolt-bluetooth-masaj-aleti-4303353?magaza=ardsport")
-        self.client.get("/promosyon/kirtasiye-eksiklerini-firsatlarla-tamamla-1440364")
-        self.client.get("/urun/continental-20555r16-91v-premiumcontact-6-2022-2447608?magaza=simetrilastik")
+    def get_search_request(self):
+        self.client.get("/arama?q=phone")
+        self.client.get("/arama?q=new+balance")
+        self.client.get("/arama?q=casio")
+        self.client.get("/arama?q=ikea")
+        self.client.get("/arama?q=pet")
+        self.client.get("/arama?q=Oculus+Quest+2+Sanal+Ger%C3%A7eklik+G%C3%B6zl%C3%BC%C4%9F%C3%BC")
+        self.client.get("/telefon-ve-aksesuarlari/cep-telefonu?q=iphone+11&md=Iphone+11-Iphone+11+Pro-Iphone+11+Pro+Max")
 
     @task
-    def get_categories(self):
-        self.client.get("/giyim-ayakkabi")
-        self.client.get("/elektronik")
-        self.client.get("/ev-yasam")
-        self.client.get("/anne-bebek")
-        self.client.get("/kozmetik-kisisel-bakim")
-        self.client.get("/mucevher-saat")
-        self.client.get("/spor-outdoor")
-        self.client.get("/kitap-muzik-film-oyun")
-        self.client.get("/otomotiv-motosiklet")
+    def get_products_from_results(self):
+        self.client.get("/urun/apple-iphone-11-64-gb-apple-turkiye-garantili-1109951?magaza=teknonet")
+        self.client.get("/urun/apple-iphone-13-128-gb-apple-turkiye-garantili-2141312?magaza=bittibitiyor")
+        self.client.get("/gunluk-spor-ayakkabi/new-balance-ms009bnr-erkek-gunluk-ayakkabi-ms009bnr-gri-P522269141")
+        self.client.get("/gunluk-spor-ayakkabi/new-balance-erkek-ayakkabi-m990nv5-P453038823")
+        self.client.get("/urun/casio-edifice-ef-539d-1avdf-erkek-kol-saati-967759?magaza=gundogdusaat")
+        self.client.get("/urun/casio-efr-s107l-1avudf-edifice-erkek-kol-saati-2193565?magaza=watchcenter")
+        self.client.get("/urun/ikea-nyskoljd-thetasarim-bulasik-kurutma-ortusu-koyu-gri-4801044?magaza=thetasarim")
+        self.client.get("/urun/bulasik-kabi-17x14x8-cm-saklama-kutusu-bulasiklik-gri-ikea-4802235?magaza=qualityshopp")
+        self.client.get("/urun/brt-pet-kedi-yatagi-60-x-45-x-17-cm-2541471?magaza=dukkanseninn")
+        self.client.get("/urun/brt-pet-simit-seklinde-polar-kedi-yatagi-50-x-12-cm-2109429?magaza=dukkanseninn")
+        self.client.get("/urun/oculus-quest-2-all-in-one-kablosuz-vr-sanal-gerceklik-gozlugu-128-gb-2103463?magaza=flytechnology")
+        self.client.get("/urun/oculus-quest-2-all-in-one-kablosuz-vr-sanal-gerceklik-gozlugu-256-gb-1576813?magaza=flytechnology")
+        self.client.get("/urun/apple-iphone-11-128-gb-apple-turkiye-garantili-1107897?magaza=cephaneteknoloji")
+        self.client.get("/urun/apple-iphone-11-128-gb-apple-turkiye-garantili-1107897?magaza=akyol-iletisim")

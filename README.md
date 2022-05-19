@@ -10,6 +10,9 @@ brew install geckodriver
 ```
 brew install allure
 ```
+```
+pip install -r requirements.txt
+```
 
 ### To create report
 ```
@@ -35,7 +38,7 @@ on: The screenshots will be saved to the “./screenshot/%Y-%m-%d/” directory 
 ## Load test
 To run the tests:
 ```
-locust
+locust -f load_tests/locustfile.py --headless --users 10 --spawn-rate 1 -H https://www.n11.com
 ```
 
 ```get_products_for_each_category``` GET-requests to products from each category

@@ -1,9 +1,6 @@
-import time
-
 import allure
 import pytest
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 def pytest_addoption(parser):
@@ -14,7 +11,7 @@ def pytest_addoption(parser):
 def browser(request):
     if request.config.getoption('--browser') == 'chrome':
         with allure.step('Open Chrome browser'):
-            browser = webdriver.Chrome(ChromeDriverManager().install())
+            browser = webdriver.Chrome()
     elif request.config.getoption('--browser') == 'firefox':
         with allure.step('Open Firefox browser'):
             browser = webdriver.Firefox()
